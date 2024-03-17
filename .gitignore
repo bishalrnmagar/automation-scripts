@@ -1,0 +1,10 @@
+# Ignore venv file
+/venv
+
+# Ignore Django migrations
+**/migrations/
+
+# Ignore cache files
+**/__pycache__/
+
+db.sqlite3
