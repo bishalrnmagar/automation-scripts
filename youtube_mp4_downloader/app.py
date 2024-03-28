@@ -1,4 +1,5 @@
 import sys
+import argparse
 
 from pytube import YouTube
 
@@ -44,5 +45,25 @@ class YoutubeDownloader:
             raise Exception(error_msg)
 
 if __name__ == '__main__':        
+    parser = argparse.ArgumentParser(description="Execute this python file to download youtube files")
+    parser.add_argument(
+        "-d",
+        "--directory",
+        default="Songs/",
+        type=str,
+        help="Directory where you want to dump your output",
+    )
+    parser.add_argument(
+        "-u",
+        "--url",
+        required=True,
+        type=str,
+        help="Url of the file you want to download",
+    )
+
+    args = parser.parse_args()
+
+    print(f"Your video url: {args.url} will be downloaded to path: {args.directory}")
+   
     yt = YoutubeDownloader()
-    yt.execute()
+    yt.execute(args.url, args.directory)
