@@ -20,29 +20,8 @@ class YoutubeDownloader:
     def get_commands(self):
         return sys.argv
 
-    def execute(self):
-        commands = self.get_commands()
-        default_location = 'Songs/'
-        error_msg = """
-            Youtube Downloader
-            Help
-            1st param url --> E.g. https://www.youtube.com/watch?v=
-            2nd param location to dump songs (by default goes to Song Directory)
-        """
-        if len(commands) == 2 and commands[1] == '--help':
-            print(error_msg)
-
-        if len(commands) == 3:
-            url = commands[1]
-            location = commands[2]
-            self.download_song(url, location)
-
-        elif len(commands) == 2:
-            url = commands[1]
-            self.download_song(url, default_location)
-
-        else:
-            raise Exception(error_msg)
+    def execute(self, url: str, directory: str):
+        return self.download_song(url, directory)
 
 if __name__ == '__main__':        
     parser = argparse.ArgumentParser(description="Execute this python file to download youtube files")
